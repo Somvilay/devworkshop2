@@ -31,9 +31,22 @@ app.use((req, res, next) => {
 // Middleware to parse the request body as json
 app.use(bodyParser.json());
 
+// please delete that msg
+app.delete('/api/message', (req, res) => {
+    Message.findByIdAndRemove({ "_id":"5cd4ff85561196000453ff32"}).exec((err, Message) => {
+        if(err) {
+            res.send(err).status(500);
+        } else {
+            res.send(Message).status(200);
+        }
+    });
+});
+
 // GET all the previous messages
 app.get('/api/message', (req, res) => {
-    Message.find({}).exec((err, messages) => {
+    
+
+    Message.find({ }).exec((err, messages) => {
         if(err) {
             res.send(err).status(500);
         } else {
