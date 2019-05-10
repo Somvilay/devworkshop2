@@ -33,14 +33,14 @@ app.use(bodyParser.json());
 
 // please delete that msg
 app.delete('/api/message', (req, res) => {
-    Message.findByIdAndRemove({ "sender":"Dontsaythenword"}).exec((err, Message) => {
+    Message.findOneAndRemove({ "sender":"Dontsaythenword"}).exec((err, Message) => {
         if(err) {
             res.send(err).status(500);
         } else {
             res.send(Message).status(200);
         }
     });
-    Message.findByIdAndRemove({ "sender":"xxxtentacion"}).exec((err, Message) => {
+    Message.findOneAndRemove({ "sender":"xxxtentacion"}).exec((err, Message) => {
         if(err) {
             res.send(err).status(500);
         } else {
@@ -52,7 +52,6 @@ app.delete('/api/message', (req, res) => {
 // GET all the previous messages
 app.get('/api/message', (req, res) => {
     
-
     Message.find({ }).exec((err, messages) => {
         if(err) {
             res.send(err).status(500);
