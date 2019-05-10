@@ -33,25 +33,20 @@ app.use(bodyParser.json());
 
 // please delete that msg
 app.delete('/api/message', (req, res) => {
-    Message.find({ "sender":"Dontsaythenword"}).exec((err, Message) => {
+    var msg = Message.find({ "sender":"Dontsaythenword"}).exec((err, Message) => {
         if(err) {
             res.send(err).status(500);
         } else {
             res.send(Message).status(200);
+            msg.delete();
         }
     });
-    Message.find({ "sender":"xxxtentacion"}).exec((err, Message) => {
+    var msg2 = Message.find({ "sender":"xxxtentacion"}).exec((err, Message) => {
         if(err) {
             res.send(err).status(500);
         } else {
             res.send(Message).status(200);
-            Message.delete({"sender":"xxxtentacion"}).exec((err, Message) => {
-                if(err) {
-                    res.send(err).status(500);
-                } else {
-                    res.send(Message).status(200);
-                }
-            });
+            msg2.delete();
         }
     });
 });
