@@ -15,7 +15,7 @@ const dbConnectString = "mongodb+srv://antsomvilay2:<workshoppw@workshop-47ueq.a
 mongoose.Promise = global.Promise;
 
 // Connecting to MongoDB through Mongoose
-mongoose.connect(dbConnectString).then(() => {
+mongoose.connect({ useNewUrlParser: true }, dbConnectString).then(() => {
     console.log('connected to the db');
 }).catch((err) => {
     console.log(err);
